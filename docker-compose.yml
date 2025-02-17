@@ -1,6 +1,7 @@
 services:
     app:
       &app
+      container_name: app
       build:
         dockerfile: Dockerfile
       command:
@@ -16,6 +17,7 @@ services:
 
     taskiq-worker:
       <<: *app
+      container_name: taskiq-worker
       ports: [ ]
       command: [ taskiq, worker, core.taskiq.broker:broker, core.taskiq.tasks ]
       depends_on:
