@@ -1,0 +1,54 @@
+# serializer version: 1
+# name: test_create_task[1-task_data0]
+  Task(id=1, name='Test 1', status=TaskStatusEnum.NEW)
+# ---
+# name: test_create_task[2-task_data1]
+  None
+# ---
+# name: test_get_all_tasks
+  list([
+    Task(id=1, name='task1', status=TaskStatusEnum.NEW),
+    Task(id=2, name='task2', status=TaskStatusEnum.NEW),
+    Task(id=3, name='task3', status=TaskStatusEnum.IN_PROGRESS),
+  ])
+# ---
+# name: test_get_task_by_id[1-True]
+  Task(id=1, name='task1', status=TaskStatusEnum.NEW)
+# ---
+# name: test_get_task_by_id[2-True]
+  Task(id=2, name='task2', status=TaskStatusEnum.NEW)
+# ---
+# name: test_get_task_by_id[3-True]
+  Task(id=3, name='task3', status=TaskStatusEnum.IN_PROGRESS)
+# ---
+# name: test_get_tasks_by_status[TaskStatusEnum.COMPLETED-0]
+  list([
+  ])
+# ---
+# name: test_get_tasks_by_status[TaskStatusEnum.ERROR-0]
+  list([
+  ])
+# ---
+# name: test_get_tasks_by_status[TaskStatusEnum.IN_PROGRESS-1]
+  list([
+    Task(id=3, name='task3', status=TaskStatusEnum.IN_PROGRESS),
+  ])
+# ---
+# name: test_get_tasks_by_status[TaskStatusEnum.NEW-2]
+  list([
+    Task(id=1, name='task1', status=TaskStatusEnum.NEW),
+    Task(id=2, name='task2', status=TaskStatusEnum.NEW),
+  ])
+# ---
+# name: test_update_task[1-task_data0]
+  Task(id=1, name='Test 1', status=TaskStatusEnum.IN_PROGRESS)
+# ---
+# name: test_update_task[1-task_data1]
+  Task(id=1, name='Test 2', status=TaskStatusEnum.ERROR)
+# ---
+# name: test_update_task[2-task_data0]
+  Task(id=2, name='Test 1', status=TaskStatusEnum.IN_PROGRESS)
+# ---
+# name: test_update_task[2-task_data1]
+  Task(id=2, name='Test 2', status=TaskStatusEnum.ERROR)
+# ---

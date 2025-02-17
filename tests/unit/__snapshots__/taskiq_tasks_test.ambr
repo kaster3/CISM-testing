@@ -1,0 +1,7 @@
+# serializer version: 1
+# name: test_task_process[0.4-TaskStatusEnum.COMPLETED]
+  TaskCreate(name='Test Task')
+# ---
+# name: test_task_process[0.6-TaskStatusEnum.ERROR]
+  TaskCreate(name='Test Task')
+# ---

@@ -7,6 +7,7 @@ from fastapi.responses import ORJSONResponse
 
 from api import router as api_router
 from core import settings
+from core.taskiq.broker import broker
 
 
 @asynccontextmanager
@@ -15,8 +16,12 @@ async def lifespan(app: FastAPI):
         level=logging.INFO,
         format=settings.logging.log_format,
     )
+    if not broker.is_worker_process:
+        await broker.startup()
     logging.info("Application starts successfully!")
     yield
+    if not broker.is_worker_process:
+        await broker.shutdown()
     logging.info("Application ends successfully!")
 
 

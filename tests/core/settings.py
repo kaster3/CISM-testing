@@ -12,7 +12,7 @@ class TestDataBase(BaseModel):
 
 class TestSettings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file="tests/core/.env.docker",
+        env_file=("tests/core/.template.env", "tests/core/.env.docker"),
         case_sensitive=False,
         env_nested_delimiter="__",
         env_prefix="TEST__",

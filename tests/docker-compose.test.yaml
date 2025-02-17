@@ -1,21 +1,16 @@
 services:
-  pharmacy_catalog_db_test:
+  db_test:
     image: postgres:16.2
-    container_name: pharmacy_catalog_db_test
+    container_name: db_test
     restart: always
-    shm_size: 128mb
     env_file:
-      - .env.docker
-#    environment:
-#      POSTGRES_PASSWORD: ${TEST_POSTGRES_PASSWORD}
-#      POSTGRES_USER: ${TEST_POSTGRES_USER}
-#      POSTGRES_DB: ${TEST_POSTGRES_DB}
+      - .template.docker.env
     ports:
       - "5435:5432"
     volumes:
-      - pharmacy_catalog_db_test:/var/lib/postgresql/data
+      - db_test:/var/lib/postgresql/data
 
 volumes:
-  pharmacy_catalog_db_test:
+  db_test:
     driver: local
 

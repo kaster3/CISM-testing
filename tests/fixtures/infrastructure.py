@@ -3,6 +3,8 @@ import logging
 import pytest_asyncio
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from api.api_v1.task.repository import TaskRepository
+from api.api_v1.task.service import TaskService
 from core.database.db_helper import DataBaseHelper
 from core.database.models.base import Base
 from tests.core.settings import TestSettings
@@ -40,3 +42,13 @@ async def db_helper(settings: TestSettings) -> DataBaseHelper:
 async def db_session(db_helper: DataBaseHelper) -> AsyncSession:
     async with db_helper.session_factory() as session:
         yield session
+
+
+@pytest_asyncio.fixture()
+async def task_service(task_repository: TaskRepository) -> TaskService:
+    return TaskService(repo=task_repository)
+
+
+@pytest_asyncio.fixture()
+async def task_repository(db_session: AsyncSession) -> TaskRepository:
+    return TaskRepository(session=db_session)

@@ -56,6 +56,11 @@ class GunicornConfig(BaseModel):
     timeout: int
 
 
+class RabbitMQConfig(BaseModel):
+    url: str
+    queue_name: str = "tasks2"
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=(".template.env", ".env"),
@@ -68,6 +73,7 @@ class Settings(BaseSettings):
     db: DataBase
     logging: LoggingConfig
     api: ApiPrefix = ApiPrefix()
+    rabbitmq: RabbitMQConfig
 
 
 settings = Settings()
